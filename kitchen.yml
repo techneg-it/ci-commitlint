@@ -3,10 +3,13 @@ driver:
   name: docker
 
 provisioner:
-  name: dummy
+  name: shell
+  script: test/scripts/provision.sh
 
 verifier:
-  name: shell
+  name: inspec
+  inputs:
+    version: 19.1.0
 
 platforms:
   - name: test
