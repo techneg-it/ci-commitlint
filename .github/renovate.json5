@@ -6,7 +6,6 @@
   ],
   "extends": [
     "config:recommended",
-    ":semanticCommitTypeAll(fix)",
     "regexManagers:dockerfileVersions",
   ],
   // `copier` template updates
