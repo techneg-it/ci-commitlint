@@ -9,7 +9,8 @@ provisioner:
 verifier:
   name: inspec
   inputs:
-    version: 19.1.0
+    # renovate: datasource=npm depName=@commitlint/cli
+    CL_CLI_VERSION: 19.1.0
 
 platforms:
   - name: test
