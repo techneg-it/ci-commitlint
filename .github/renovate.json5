@@ -14,6 +14,8 @@
   //   * update needed but not yet applied (and further updates could appear in this condition)
   // `renovate` needs to be able to match both conditions for PRs to work properly
   // We make a hacky use of the otherwise unused field `currentDigest` to hold the current copier template version
+  //
+  // Update `_VERSION` values in Test Kitchen files
   "customManagers": [
     {
       "customType": "regex",
@@ -24,6 +26,15 @@
       ],
       "datasourceTemplate": "github-tags",
       "autoReplaceStringTemplate": "_commit: {{#if currentDigest}}{{{currentDigest}}}{{else}}{{{currentValue}}}{{/if}} # __copier_update_needed {{{newValue}}}\n_src_path: gh:{{{depName}}}\n",
+    },
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "(^|/)\\.?kitchen(?:\\.local)?\\.yml$",
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[a-z-.]+?) depName=(?<depName>[^\\s]+?)(?: (?:packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+[A-Za-z0-9_]+?_VERSION\\s*:\\s*[\"']?(?<currentValue>.+?)[\"']?\\s",
+      ]
     },
   ],
   "git-submodules": {
