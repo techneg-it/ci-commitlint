@@ -7,7 +7,7 @@ end
 describe command('commitlint --version') do
   its('exit_status') { should eq 0 }
   its('stderr') { should eq '' }
-  its('stdout') { should match input('version') }
+  its('stdout') { should match input('CL_CLI_VERSION') }
 end
 
 describe command('echo "feat: message" | commitlint') do
