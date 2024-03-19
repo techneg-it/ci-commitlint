@@ -44,7 +44,7 @@
   },
   "packageRules": [
     {
-      "matchDatasources": ["npm"],
+      "matchDatasources": ["docker", "npm"],
       "semanticCommitType": "fix",
     }
   ]
