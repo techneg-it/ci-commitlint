@@ -2,10 +2,12 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "enabledManagers": [
     "custom.regex",
+    "dockerfile",
     "git-submodules",
   ],
   "extends": [
     "config:recommended",
+    "docker:pinDigests",
     "regexManagers:dockerfileVersions",
   ],
   // `copier` template updates
@@ -40,4 +42,10 @@
   "git-submodules": {
     "enabled": true
   },
+  "packageRules": [
+    {
+      "matchDatasources": ["npm"],
+      "semanticCommitType": "fix",
+    }
+  ]
 }
