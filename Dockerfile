@@ -1,7 +1,9 @@
 FROM node:21-bookworm-slim
 
 # renovate: datasource=npm depName=@commitlint/cli
-ARG CL_VERSION=19.1.0
+ARG CL_CLI_VERSION=19.1.0
+# renovate: datasource=npm depName=@commitlint/config-conventional
+ARG CL_CC_VERSION=19.1.0
 
 # Avoid unnecessary files when installing packages
 COPY files/dpkg-nodoc /etc/dpkg/dpkg.cfg.d/01_nodoc
@@ -20,6 +22,6 @@ RUN : \
     && :
 
 RUN : \
-    && npm install -g @commitlint/cli@${CL_VERSION} \
-        @commitlint/config-conventional@${CL_VERSION} \
+    && npm install -g @commitlint/cli@${CL_CLI_VERSION} \
+        @commitlint/config-conventional@${CL_CC_VERSION} \
     && :
