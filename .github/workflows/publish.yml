@@ -9,15 +9,14 @@ jobs:
   run-publish-workflow:
     name: Run `publish` workflow
     uses: ./.github/workflows/libpublish.yml
-    permissions:
-      packages: write
     with:
-      image-namespace: dafyddj
+      docker-registry: docker.io
+      image-namespace: techneg
       image-repo: ci-commitlint
       labels: org.opencontainers.image.authors=SaltStack Formulas <GitHub @saltstack-formulas>
     secrets:
-      registry-password: ${{ secrets.GITHUB_TOKEN }}
-      registry-username: ${{ github.repository_owner }}
+      registry-password: ${{ secrets.REGISTRY_TOKEN }}
+      registry-username: ${{ secrets.REGISTRY_USERNAME }}
   report:
     name: Report success
     needs:
