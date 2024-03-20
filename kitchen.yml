@@ -15,7 +15,7 @@ verifier:
 platforms:
   - name: test
     driver:
-      image: dafyddj/ci-commitlint:local-test
+      image: techneg/ci-commitlint:local-test
       platform: debian
 
 suites:
