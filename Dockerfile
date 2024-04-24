@@ -1,4 +1,4 @@
-FROM node:21-bookworm-slim@sha256:fb82287cf66ca32d854c05f54251fca8b572149163f154248df7e800003c90b5
+FROM node:21-bookworm-slim@sha256:db308384dbc89ee55e0a6d04279a351277b2cff03c18556c347517e4a7dee470
 
 # renovate: datasource=npm depName=@commitlint/cli
 ARG CL_CLI_VERSION=19.3.0
