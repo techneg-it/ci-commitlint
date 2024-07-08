@@ -6,6 +6,9 @@
     "git-submodules",
   ],
   "extends": [
+    ":automergeDigest",
+    ":automergeMinor",
+    ":semanticPrefixChore",
     "config:recommended",
     "docker:pinDigests",
     "regexManagers:dockerfileVersions",
@@ -24,10 +27,19 @@
       "fileMatch": ["^.copier-answers.yml$"],
       "matchStrings": [
         "_commit: (?<currentValue>\\S+)\\n_src_path: gh:(?<depName>\\S+)\\n",
-        "_commit: (?<currentDigest>\\S+) # __copier_update_needed (?<currentValue>\\S+)\\n_src_path: gh:(?<depName>\\S+)\\n",
+        "_commit: (?<currentDigest>\\S+) # __copier_update_available (?<currentValue>\\S+)\\n_src_path: gh:(?<depName>\\S+)\\n",
       ],
       "datasourceTemplate": "github-tags",
-      "autoReplaceStringTemplate": "_commit: {{#if currentDigest}}{{{currentDigest}}}{{else}}{{{currentValue}}}{{/if}} # __copier_update_needed {{{newValue}}}\n_src_path: gh:{{{depName}}}\n",
+      "autoReplaceStringTemplate": "_commit: {{#if currentDigest}}{{{currentDigest}}}{{else}}{{{currentValue}}}{{/if}} # __copier_update_available {{{newValue}}}\n_src_path: gh:{{{depName}}}\n",
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["^\\.schedule-version$"],
+      "matchStrings": [
+        "(?<currentValue>\\S+)\\n"
+      ],
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "techneg-it/ci-commitlint",
     },
     {
       "customType": "regex",
@@ -46,6 +58,28 @@
     {
       "matchDatasources": ["docker", "npm"],
       "semanticCommitType": "fix",
-    }
-  ]
+    },
+    {
+      "matchFiles": [".schedule-version"],
+      "extends": [
+        ":semanticPrefixFix",
+        "schedule:weekly",
+      ],
+      "commitMessageAction": "",
+      "commitMessageExtra": "({{prettyNewVersion}})",
+      "commitMessageTopic": "Scheduled update",
+      "minimumReleaseAge": "1 day",
+      "platformAutomerge": false,
+    },
+    {
+      "matchManagers": ["git-submodules"],
+      "automerge": true,
+    },
+    {
+      "matchFiles": [".copier-answers.yml"],
+      "automerge": true,
+      "commitMessageSuffix": "available",
+    },
+  ],
+  "platformAutomerge": false,
 }
