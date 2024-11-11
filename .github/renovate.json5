@@ -3,10 +3,7 @@
   "enabledManagers": [
     "copier",
     "custom.regex",
-<<<<<<< before updating
     "dockerfile",
-=======
->>>>>>> after updating
     "git-submodules",
   ],
   "extends": [
@@ -42,15 +39,11 @@
   },
   "packageRules": [
     {
-<<<<<<< before updating
       "matchDatasources": ["docker", "npm"],
       "semanticCommitType": "fix",
     },
     {
-      "matchFiles": [".schedule-version"],
-=======
       "matchFileNames": [".schedule-version"],
->>>>>>> after updating
       "extends": [
         ":semanticPrefixFix",
         "schedule:weekly",
