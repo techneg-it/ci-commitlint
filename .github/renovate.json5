@@ -39,10 +39,6 @@
   },
   "packageRules": [
     {
-      "matchDatasources": ["docker", "npm"],
-      "semanticCommitType": "fix",
-    },
-    {
       "matchFileNames": [".schedule-version"],
       "extends": [
         ":semanticPrefixFix",
