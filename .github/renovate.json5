@@ -1,4 +1,5 @@
 {
+<<<<<<< before updating
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "enabledManagers": [
     "copier",
@@ -13,16 +14,29 @@
     "config:recommended",
     "docker:pinDigests",
     "regexManagers:dockerfileVersions",
+=======
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  enabledManagers: [
+    'copier',
+    'custom.regex',
+    'git-submodules',
   ],
-  "customManagers": [
+  extends: [
+    ':automergeDigest',
+    ':automergeMinor',
+    ':semanticPrefixChore',
+    'config:recommended',
+>>>>>>> after updating
+  ],
+  customManagers: [
     {
-      "customType": "regex",
-      "fileMatch": ["^\\.schedule-version$"],
-      "matchStrings": [
-        "(?<currentValue>\\S+)\\n"
+      customType: 'regex',
+      fileMatch: ['^\\.schedule-version$'],
+      matchStrings: [
+        '(?<currentValue>\\S+)\\n'
       ],
-      "datasourceTemplate": "github-tags",
-      "depNameTemplate": "techneg-it/ci-commitlint",
+      datasourceTemplate: 'github-tags',
+      depNameTemplate: 'techneg-it/ci-commitlint',
     },
     {
       "customType": "regex",
@@ -34,25 +48,27 @@
       ]
     },
   ],
-  "git-submodules": {
-    "enabled": true
+  'git-submodules': {
+    enabled: true
   },
-  "packageRules": [
+  packageRules: [
     {
-      "matchFileNames": [".schedule-version"],
-      "extends": [
-        ":semanticPrefixFix",
-        "schedule:weekly",
+      matchFileNames: ['.schedule-version'],
+      extends: [
+        ':semanticPrefixFix',
+        'schedule:weekly',
       ],
-      "commitMessageAction": "",
-      "commitMessageExtra": "({{prettyNewVersion}})",
-      "commitMessageTopic": "Scheduled update",
-      "minimumReleaseAge": "1 day",
-      "platformAutomerge": false,
+      commitMessageAction: '',
+      commitMessageExtra: '({{prettyNewVersion}})',
+      commitMessageTopic: 'Scheduled update',
+      minimumReleaseAge: '1 day',
+      platformAutomerge: false,
     },
     {
-      "matchManagers": ["git-submodules"],
-      "automerge": true,
+      matchManagers: [
+        'git-submodules',
+      ],
+      automerge: true,
     },
   ],
 }
