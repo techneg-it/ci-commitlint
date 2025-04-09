@@ -1,24 +1,9 @@
 {
-<<<<<<< before updating
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "enabledManagers": [
-    "copier",
-    "custom.regex",
-    "dockerfile",
-    "git-submodules",
-  ],
-  "extends": [
-    ":automergeDigest",
-    ":automergeMinor",
-    ":semanticPrefixChore",
-    "config:recommended",
-    "docker:pinDigests",
-    "regexManagers:dockerfileVersions",
-=======
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   enabledManagers: [
     'copier',
     'custom.regex',
+    'dockerfile',
     'git-submodules',
   ],
   extends: [
@@ -26,7 +11,8 @@
     ':automergeMinor',
     ':semanticPrefixChore',
     'config:recommended',
->>>>>>> after updating
+    'docker:pinDigests',
+    'regexManagers:dockerfileVersions',
   ],
   customManagers: [
     {
@@ -39,12 +25,12 @@
       depNameTemplate: 'techneg-it/ci-commitlint',
     },
     {
-      "customType": "regex",
-      "fileMatch": [
-        "(^|/)\\.?kitchen(?:\\.local)?\\.yml$",
+      customType: 'regex',
+      fileMatch: [
+        '(^|/)\\.?kitchen(?:\\.local)?\\.yml$',
       ],
-      "matchStrings": [
-        "# renovate: datasource=(?<datasource>[a-z-.]+?) depName=(?<depName>[^\\s]+?)(?: (?:packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+[A-Za-z0-9_]+?_VERSION\\s*:\\s*[\"']?(?<currentValue>.+?)[\"']?\\s",
+      matchStrings: [
+        '# renovate: datasource=(?<datasource>[a-z-.]+?) depName=(?<depName>[^\\s]+?)(?: (?:packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+[A-Za-z0-9_]+?_VERSION\\s*:\\s*["\']?(?<currentValue>.+?)["\']?\\s',
       ]
     },
   ],
