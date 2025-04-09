@@ -1,58 +1,60 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "enabledManagers": [
-    "copier",
-    "custom.regex",
-    "dockerfile",
-    "git-submodules",
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  enabledManagers: [
+    'copier',
+    'custom.regex',
+    'dockerfile',
+    'git-submodules',
   ],
-  "extends": [
-    ":automergeDigest",
-    ":automergeMinor",
-    ":semanticPrefixChore",
-    "config:recommended",
-    "docker:pinDigests",
-    "regexManagers:dockerfileVersions",
+  extends: [
+    ':automergeDigest',
+    ':automergeMinor',
+    ':semanticPrefixChore',
+    'config:recommended',
+    'docker:pinDigests',
+    'regexManagers:dockerfileVersions',
   ],
-  "customManagers": [
+  customManagers: [
     {
-      "customType": "regex",
-      "fileMatch": ["^\\.schedule-version$"],
-      "matchStrings": [
-        "(?<currentValue>\\S+)\\n"
+      customType: 'regex',
+      fileMatch: ['^\\.schedule-version$'],
+      matchStrings: [
+        '(?<currentValue>\\S+)\\n'
       ],
-      "datasourceTemplate": "github-tags",
-      "depNameTemplate": "techneg-it/ci-commitlint",
+      datasourceTemplate: 'github-tags',
+      depNameTemplate: 'techneg-it/ci-commitlint',
     },
     {
-      "customType": "regex",
-      "fileMatch": [
-        "(^|/)\\.?kitchen(?:\\.local)?\\.yml$",
+      customType: 'regex',
+      fileMatch: [
+        '(^|/)\\.?kitchen(?:\\.local)?\\.yml$',
       ],
-      "matchStrings": [
-        "# renovate: datasource=(?<datasource>[a-z-.]+?) depName=(?<depName>[^\\s]+?)(?: (?:packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+[A-Za-z0-9_]+?_VERSION\\s*:\\s*[\"']?(?<currentValue>.+?)[\"']?\\s",
+      matchStrings: [
+        '# renovate: datasource=(?<datasource>[a-z-.]+?) depName=(?<depName>[^\\s]+?)(?: (?:packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+[A-Za-z0-9_]+?_VERSION\\s*:\\s*["\']?(?<currentValue>.+?)["\']?\\s',
       ]
     },
   ],
-  "git-submodules": {
-    "enabled": true
+  'git-submodules': {
+    enabled: true
   },
-  "packageRules": [
+  packageRules: [
     {
-      "matchFileNames": [".schedule-version"],
-      "extends": [
-        ":semanticPrefixFix",
-        "schedule:weekly",
+      matchFileNames: ['.schedule-version'],
+      extends: [
+        ':semanticPrefixFix',
+        'schedule:weekly',
       ],
-      "commitMessageAction": "",
-      "commitMessageExtra": "({{prettyNewVersion}})",
-      "commitMessageTopic": "Scheduled update",
-      "minimumReleaseAge": "1 day",
-      "platformAutomerge": false,
+      commitMessageAction: '',
+      commitMessageExtra: '({{prettyNewVersion}})',
+      commitMessageTopic: 'Scheduled update',
+      minimumReleaseAge: '1 day',
+      platformAutomerge: false,
     },
     {
-      "matchManagers": ["git-submodules"],
-      "automerge": true,
+      matchManagers: [
+        'git-submodules',
+      ],
+      automerge: true,
     },
   ],
 }
