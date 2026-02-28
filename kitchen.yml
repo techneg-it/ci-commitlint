@@ -10,7 +10,7 @@ verifier:
   name: inspec
   inputs:
     # renovate: datasource=npm depName=@commitlint/cli
-    CL_CLI_VERSION: 20.4.1
+    CL_CLI_VERSION: 20.4.2
 
 platforms:
   - name: test
