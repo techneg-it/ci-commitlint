@@ -1,9 +1,9 @@
 FROM node:24-bookworm-slim@sha256:d8e448a56fc63242f70026718378bd4b00f8c82e78d20eefb199224a4d8e33d8
 
 # renovate: datasource=npm depName=@commitlint/cli
-ARG CL_CLI_VERSION=20.4.3
+ARG CL_CLI_VERSION=20.5.0
 # renovate: datasource=npm depName=@commitlint/config-conventional
-ARG CL_CC_VERSION=20.4.3
+ARG CL_CC_VERSION=20.5.0
 
 # Avoid unnecessary files when installing packages
 COPY files/dpkg-nodoc /etc/dpkg/dpkg.cfg.d/01_nodoc
