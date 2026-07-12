@@ -1,7 +1,7 @@
 FROM node:24-bookworm-slim@sha256:cb4e8f7c443347358b7875e717c29e27bf9befc8f5a26cf18af3c3dec80e58c5
 
 # renovate: datasource=npm depName=@commitlint/cli
-ARG CL_CLI_VERSION=21.2.0
+ARG CL_CLI_VERSION=21.2.1
 # renovate: datasource=npm depName=@commitlint/config-conventional
 ARG CL_CC_VERSION=21.2.0
 
